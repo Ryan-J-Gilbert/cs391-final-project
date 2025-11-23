@@ -5,10 +5,12 @@
  * 
  * Page to display user's budgeting history.
  */
+
 "use client";
 import { useState, useEffect } from "react";
 import { MonthEntry } from "@/types/MonthEntry";
 import { getDatabase } from "../db";
+import NavBar from "../components/NavBar";
 
 export default function History() {
     const [entries, setEntries] = useState([] as MonthEntry[]);
@@ -26,14 +28,17 @@ export default function History() {
     }, []);
 
     return (
-        <div className="">
+        <div className="bg-slate-900 min-h-screen p-4">
+            <NavBar />
             <h2 className="">History</h2>
             {entries.map((m : MonthEntry) => (
-                <div key={m.id} className="">
+                <div key={m.id} className="flex flex-col border-2 border-white rounded-md p-4 m-4">
                     <p className="">Date: {m.month+"/"+m.year}</p>
-                    <p className="">Wants: ${m.wants}</p>
-                    <p className="">Needs: ${m.needs}</p>
-                    <p className="">Savings: ${m.savings}</p>
+                    <div className="flex gap-4">
+                        <p className="inline">Wants: ${m.wants}</p>
+                        <p className="inline">Needs: ${m.needs}</p>
+                        <p className="inline">Savings: ${m.savings}</p>
+                    </div>
                     <p className="">Total Budget: ${m.total}</p>
                 </div>
             ))}
