@@ -31,6 +31,7 @@ export default function History() {
         <div className="bg-slate-900 min-h-screen p-4">
             <NavBar />
             <h2 className="">History</h2>
+            {/* Mapping for each month entry to a display card. I'm going to refactor this into its own component later.*/}
             {entries.map((m : MonthEntry) => (
                 <div key={m.id} className="flex flex-col border-2 border-white rounded-md p-4 m-4">
                     <p className="">Date: {m.month+"/"+m.year}</p>
