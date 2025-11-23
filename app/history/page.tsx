@@ -5,22 +5,40 @@
  * 
  * Page to display user's budgeting history.
  */
-"use client";
-import { useState } from "react";
-import { MonthEntry } from "@/types/MonthEntry";
 
-export default function History({monthEntries} : {monthEntries: MonthEntry[]}) {
-    const [entries, setEntries] = useState(monthEntries);
+"use client";
+import { useState, useEffect } from "react";
+import { MonthEntry } from "@/types/MonthEntry";
+import { getDatabase } from "../db";
+import NavBar from "../components/NavBar";
+
+export default function History() {
+    const [entries, setEntries] = useState([] as MonthEntry[]);
+
+    useEffect(() => {
+        getDatabase().then((collection) => {
+            const query = collection.finances.find();
+            const _ = query.$.subscribe((months: MonthEntry[]) => {
+                setEntries(months);
+            })
+        })
+        .catch((err) => {
+            console.error("Failed to fetch month entries:", err);
+        });
+    }, []);
 
     return (
-        <div className="">
+        <div className="bg-slate-900 min-h-screen p-4">
+            <NavBar />
             <h2 className="">History</h2>
             {entries.map((m : MonthEntry) => (
-                <div key={String(m.month)+"/"+String(m.year)} className="">
+                <div key={m.id} className="flex flex-col border-2 border-white rounded-md p-4 m-4">
                     <p className="">Date: {m.month+"/"+m.year}</p>
-                    <p className="">Wants: ${m.wants}</p>
-                    <p className="">Needs: ${m.needs}</p>
-                    <p className="">Savings: ${m.savings}</p>
+                    <div className="flex gap-4">
+                        <p className="inline">Wants: ${m.wants}</p>
+                        <p className="inline">Needs: ${m.needs}</p>
+                        <p className="inline">Savings: ${m.savings}</p>
+                    </div>
                     <p className="">Total Budget: ${m.total}</p>
                 </div>
             ))}
