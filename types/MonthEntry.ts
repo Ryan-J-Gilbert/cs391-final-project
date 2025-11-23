@@ -1,4 +1,5 @@
 export type MonthEntry ={
+    id: string;
     month: number;
     year: number;
     wants: number;
