@@ -143,17 +143,13 @@ export default function Report() {
 
                 {/* Buttons */}
                 <div className="flex justify-between mt-6">
-                    
-                    
                     <button
                         type="submit"
                         className="px-5 py-2 bg-green-600 text-white rounded-md shadow hover:bg-green-700 transition"
                     >
                         Submit
                     </button>
-                    
-                    
-                    
+        
                     <Link href="/">
                         <button
                             type="button"
@@ -161,9 +157,7 @@ export default function Report() {
                         >
                             Back/Cancel
                         </button>
-                    
                     </Link>
-                    
                 </div>
             </form>
         </div>
@@ -172,4 +166,3 @@ export default function Report() {
 
 }
 
-// <Link href="/report"><Button variant="outline" className="m-4">New Report</Button></Link
