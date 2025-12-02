@@ -4,7 +4,7 @@
 
 
 "use client";
-
+import { getDatabase } from "../db";
 import { useState } from "react";
 import { MonthEntry } from "@/types/MonthEntry";
 import Link from "next/link";
@@ -47,6 +47,15 @@ export default function Report() {
         };
 
         console.log("Submitted entry:", newEntry);
+                getDatabase()
+            .then((collection) => {
+                collection.finances.insert({
+                    ...newEntry
+                })
+            })
+            .catch((err) => {
+                console.error("Failed to submit report:", err);
+            });
         alert("Report submitted!");
 
         // resets the fields
