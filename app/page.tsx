@@ -3,6 +3,8 @@
 // Author: Ryan Gilbert
 // Email: ryanjg@bu.edu
 
+"use client";
+
 import Image from "next/image";
 import BigNumber from "@/components/BigNumber";
 import { Button } from "@/components/ui/button";
@@ -11,6 +13,7 @@ import { getDatabase } from "@/app/db";
 import { useState, useEffect } from "react";
 import { MonthEntry } from "@/types/MonthEntry";
 
+import GraphCarousel from "@/components/GraphCarousel";
 
 export default function Home() {
   const [entries, setEntries] = useState([] as MonthEntry[]);
@@ -54,9 +57,10 @@ export default function Home() {
         <BigNumber title="Needs" value={needsValue} change={needsChange} />
         <BigNumber title="Savings" value={savingsValue} change={savingsChange} />
       </div>
-      <div className="flex items-center justify-evenly pt-10">
-        <h1 className="text-8xl pt-10">Carousel</h1>
-      </div>
+ 
+
+      <GraphCarousel />
+
       <div className="absolute bottom-0 left-0 right-0">
         <div className="flex justify-evenly pb-4">
           <Link href="/report"><Button variant="outline" className="m-4">New Report</Button></Link>
