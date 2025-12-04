@@ -30,6 +30,11 @@ export default function Report() {
             return;
         }
 
+        if (parseInt(wants) < 0  || parseInt(needs) < 0 || parseInt(savings) < 0) {
+            alert("Fields can not be negative.");
+            return;
+        }
+
         const numWants = Number(wants);
         const numNeeds = Number(needs);
         const numSavings = Number(savings);
@@ -37,7 +42,7 @@ export default function Report() {
         const total = numWants + numNeeds + numSavings;
 
         const newEntry: MonthEntry = {
-            id: "",
+            id: crypto.randomUUID(), // creates secure random ID
             month,
             year,
             wants: numWants,
