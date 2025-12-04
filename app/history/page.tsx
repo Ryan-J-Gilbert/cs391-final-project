@@ -30,7 +30,7 @@ export default function History() {
 
     return (
         <div className="bg-white min-h-screen p-4">
-            <h2 className="">History | <Link href="/dashboard" className="hover:border-b border-black">Back</Link></h2>
+            <h2 className="">History | <Link href="/" className="hover:border-b border-black">Back</Link></h2>
             {/* Mapping for each month entry to a display card. */}
             <ul>
             {entries.map((m : MonthEntry) => (
