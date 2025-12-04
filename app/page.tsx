@@ -22,6 +22,7 @@ export default function Home() {
     getDatabase().then((collection) => {
       const query = collection.finances.find();
       const _ = query.$.subscribe((months: MonthEntry[]) => {
+        months.sort((a, b) => a.year - b.year || a.month - b.month);
         setEntries(months);
       })
     })
