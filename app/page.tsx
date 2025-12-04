@@ -8,28 +8,7 @@ import Image from "next/image";
 import BigNumber from "@/components/BigNumber";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-
-
-//example data
-const spendingData = [
-  { month: "Jan", spending: 400 },
-  { month: "Feb", spending: 300 },
-  { month: "Mar", spending: 500 },
-  { month: "Apr", spending: 700 },
-  { month: "May", spending: 600 },
-];
-const lastMonthData = [
-  { name: "Wants", value: 300, color: "blue", },
-  { name: "Needs", value: 500, color: "green" },
-  { name: "Savings", value: 200, color: "orange" },
-];
-const currentYearData = [
-  { name: "Wants", value: 2400, color: "blue" },
-  { name: "Needs", value: 3100, color: "green" },
-  { name: "Savings", value: 1500, color: "orange" },
-];
+import GraphCarousel from "@/components/GraphCarousel";
 
 export default function Home() {
   return (
@@ -40,83 +19,7 @@ export default function Home() {
         <BigNumber title="Savings" value={50} change={-5} />
       </div>
 
-      <div className="flex flex-col items-center pt-10 w-full">
-        <Carousel className="max-w-xl">
-          <CarouselContent>
-            {/* line graph */}
-            <CarouselItem>
-              <div className="p-4 border rounded-xl bg-white">
-                <h2 className="text-center text-xl font-bold">Spending Over Time</h2>
-                <div>
-                  <ResponsiveContainer>
-                    <LineChart data={spendingData}>
-                      <XAxis dataKey="month" />
-                      <YAxis />
-                      <Tooltip />
-                      <Line type="monotone" dataKey="spending" stroke="blue" strokeWidth={3} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-            </CarouselItem>
-            {/* pie chart of prev month */}
-            <CarouselItem>
-              <div className="bg-white p-4 rounded-xl border">
-                <h2 className="text-center text-xl font-bold">Last Month</h2>
-                <div>
-                  <ResponsiveContainer>
-                    <PieChart>
-                      <Pie
-                        data={lastMonthData}
-                        dataKey="value"
-                        nameKey="name"
-                        label
-                      >
-                        {lastMonthData.map((entry, index) => (
-                          <Cell
-                            key={index}
-                            fill={entry.color}
-                          />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-            </CarouselItem>
-            {/* pie chart of current year */}
-            <CarouselItem>
-              <div className="bg-white p-4 rounded-xl border">
-                <h2 className="text-center text-xl font-bold">Current Year</h2>
-                <div>
-                  <ResponsiveContainer>
-                    <PieChart>
-                      <Pie
-                        data={currentYearData}
-                        dataKey="value"
-                        nameKey="name"
-                        label
-                      >
-                        {currentYearData.map((entry, index) => (
-                          <Cell
-                            key={index}
-                            fill={entry.color}
-                          />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-            </CarouselItem>
-          </CarouselContent>
-
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </div>
+      <GraphCarousel />
 
       <div className="absolute bottom-0 left-0 right-0">
         <div className="flex justify-evenly pb-4">
