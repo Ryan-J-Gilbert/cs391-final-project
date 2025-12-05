@@ -81,68 +81,78 @@ export default function GraphCarousel() {
   if (loading) return <p className="text-center mt-10">Loading...</p>;
 
   return (
-    <div className="flex flex-col items-center pt-10 w-full">
-      <Carousel className="max-w-xl">
-        <CarouselContent>
-          {/* line graph of spending overtime*/}
-          <CarouselItem>
-            <div className="p-4 border rounded-xl bg-white">
-              <h2 className="text-center text-xl font-bold">Spending Over Time</h2>
-              <div style={{ width: "100%", height: 300 }}>
-                <ResponsiveContainer>
-                  <LineChart data={spendingData}>
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="spending" stroke="blue" strokeWidth={3} />
-                  </LineChart>
-                </ResponsiveContainer>
+    <div className="w-full flex justify-center pt-4 px-2 sm:px-4">
+      <div className="relative max-w-xl w-full">
+        <Carousel className="w-full">
+          <CarouselContent className="px-8">
+            {/* line chart for spending over time */}
+            <CarouselItem>
+              <div className="p-4 border rounded-xl bg-white">
+                <h2 className="text-center text-xl font-bold">Spending Over Time</h2>
+                <div style={{ width: "100%", height: 300 }}>
+                  <ResponsiveContainer>
+                    <LineChart data={spendingData}>
+                      <XAxis dataKey="month" />
+                      <YAxis />
+                      <Tooltip />
+                      <Line type="monotone" dataKey="spending" stroke="blue" strokeWidth={3} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
-            </div>
-          </CarouselItem>
+            </CarouselItem>
 
-          {/* pie chart of last month */}
-          <CarouselItem>
-            <div className="bg-white p-4 rounded-xl border">
-              <h2 className="text-center text-xl font-bold">Last Month</h2>
-              <div style={{ width: "100%", height: 300 }}>
-                <ResponsiveContainer>
-                  <PieChart>
-                    <Pie data={lastMonthData} dataKey="value" nameKey="name" label>
-                      {lastMonthData.map((entry, i) => (
-                        <Cell key={i} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
+            {/* pie chart for prev month budget */}
+            <CarouselItem>
+              <div className="p-4 border rounded-xl bg-white">
+                <h2 className="text-center text-xl font-bold">Last Month</h2>
+                <div style={{ width: "100%", height: 300 }}>
+                  <ResponsiveContainer>
+                    <PieChart>
+                      <Pie data={lastMonthData} dataKey="value" nameKey="name" label>
+                        {lastMonthData.map((entry, i) => (
+                          <Cell key={i} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
-            </div>
-          </CarouselItem>
+            </CarouselItem>
 
-          {/* pie chart of current year */}
-          <CarouselItem>
-            <div className="bg-white p-4 rounded-xl border">
-              <h2 className="text-center text-xl font-bold">Current Year Totals</h2>
-              <div style={{ width: "100%", height: 300 }}>
-                <ResponsiveContainer>
-                  <PieChart>
-                    <Pie data={currentYearData} dataKey="value" nameKey="name" label>
-                      {currentYearData.map((entry, i) => (
-                        <Cell key={i} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
+            {/* pie chart for current year budgets */}
+            <CarouselItem>
+              <div className="p-4 border rounded-xl bg-white">
+                <h2 className="text-center text-xl font-bold">Current Year Totals</h2>
+                <div style={{ width: "100%", height: 300 }}>
+                  <ResponsiveContainer>
+                    <PieChart>
+                      <Pie data={currentYearData} dataKey="value" nameKey="name" label>
+                        {currentYearData.map((entry, i) => (
+                          <Cell key={i} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
+            </CarouselItem>
+          </CarouselContent>
 
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+          {/* arrows to move between graphs */}
+          <CarouselPrevious className="left-2 w-10 h-10 rounded-full bg-white text-blue-500 flex items-center justify-center">
+            &lt;
+          </CarouselPrevious>
+          <CarouselNext className="right-2 w-10 h-10 rounded-full bg-white text-blue-500 flex items-center justify-center">
+            &gt;
+          </CarouselNext>
+
+
+        </Carousel>
+      </div>
     </div>
+
   );
 }
