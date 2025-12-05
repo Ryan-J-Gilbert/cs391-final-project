@@ -74,7 +74,7 @@ export default function Report() {
 
     return (
     <main className="flex flex-col items-center py-10">
-        <div className="mt-8 w-full max-w-md bg-white shadow-xl rounded-xl p-6 border">
+        <div className="mt-8 w-full bg-white shadow-xl rounded-xl p-6 border max-w-[70%] md:max-w-sm ">
             <form onSubmit={handleSubmit} className="space-y-5">
                 <h1 className="text-2xl font-bold text-center mb-4">
                     Budgeting Report Form
