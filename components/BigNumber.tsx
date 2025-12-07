@@ -4,6 +4,7 @@
 
 export default function BigNumber({ title, value, change }: { title: string, value: number, change: number }){
 
+    // conditionally set border color and arrow direction to signify change
     const color = change > 0 ? "border-green-500" : "border-red-500";
     const changeClass = "border-3 w-32 aspect-square text-white bg-gray-600 rounded-lg flex flex-col items-center justify-center " + color;
     const changeText = (change > 0 ? "˄": "˅") + " $" + change;
