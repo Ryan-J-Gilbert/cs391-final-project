@@ -29,20 +29,20 @@ export default function History() {
     }, []);
 
     return (
-        <div className="bg-white min-h-screen p-4">
-            <h2 className="">History | <Link href="/" className="hover:border-b border-black">Back</Link></h2>
+        <div className="bg-white min-h-screen p-[calc(10px+2vw)]">
+            <h2 className="text-[calc(12px+2vw)] text-center md:text-left">History | <Link href="/" className="hover:border-b-2 border-black text-[calc(12px+2vw)]">Back</Link></h2>
             {/* Mapping for each month entry to a display card. */}
-            <ul>
+            <ul className="">
             {entries.map((m : MonthEntry) => (
                 <li key={m.id} className="flex flex-col border border-white rounded-md p-2 m-4">
                     <Card className="pl-[10%] pr-[10%] bg-gray-50 text-center">
-                        <p className="text-2xl">Date: {m.month+"/"+m.year}</p>
-                        <div className="flex gap-4 justify-between">
-                            <p className="inline text-blue-600 text-xl">Wants: ${m.wants}</p>
-                            <p className="inline text-green-500 text-xl">Needs: ${m.needs}</p>
-                            <p className="inline text-orange-500 text-xl">Savings: ${m.savings}</p>
+                        <p className="text-[calc(12px+2vw)]">Date: {m.month+"/"+m.year}</p>
+                        <div className="flex gap-4 justify-between pt-[calc(5px+1vw)] pb-[calc(5px+1vw)]">
+                            <p className="inline text-blue-600 text-[calc(8px+2vw)]">Wants: ${m.wants}</p>
+                            <p className="inline text-green-500 text-[calc(8px+2vw)]">Needs: ${m.needs}</p>
+                            <p className="inline text-orange-500 text-[calc(8px+2vw)]">Savings: ${m.savings}</p>
                         </div>
-                        <p className="text-2xl">Total Budget: ${m.total}</p>
+                        <p className="text-[calc(12px+2vw)]">Total Budget: ${m.total}</p>
                     </Card>
                 </li>
             ))}
