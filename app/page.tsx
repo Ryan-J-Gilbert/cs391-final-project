@@ -31,7 +31,7 @@ export default function Home() {
       });
   }, []);
 
-  console.log(entries);
+  // calculate big number values
   let wantsValue = 0;
   let needsValue = 0;
   let savingsValue = 0;
